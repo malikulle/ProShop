@@ -1,0 +1,59 @@
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const Order = require("./Order");
+
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+// Password bcrypt
+UserSchema.pre("save", async function (next) {
+  //parola değişmemişse
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compareSync(enteredPassword, this.password);
+};
+
+// Token
+UserSchema.methods.generateToken = function () {
+  return jwt.sign({ id: this._id, email: this.email }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE,
+  });
+};
+
+UserSchema.post("remove", async function () {
+  await Order.deleteMany({
+    user: this._id
+  });
+});
+
+module.exports = mongoose.model("User", UserSchema);
