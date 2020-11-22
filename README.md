@@ -81,7 +81,7 @@ Requests are authenticated using the `Authorization` header and value `Bearer: {
 ![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/4.png?raw=true)
 ![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/5.png?raw=true)
 ![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/6.png?raw=true)
-![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/6.png?raw=true)
+![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/7.png?raw=true)
 ![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/8.png?raw=true)
 ![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/9.png?raw=true)
 ![Image of HomePage](https://github.com/malikulle/ProShop/blob/master/images/10.png?raw=true)
